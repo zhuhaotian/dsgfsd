@@ -1,0 +1,22 @@
+server:
+  port: 1111
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8080/eureka/
+spring:
+  application:
+    name: provi
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/zht?characterEncoding=utf-8
+    username: root
+    password:
+
+    thymeleaf:
+      encoding: UTF-8
+      servlet:
+        content-type: text/html
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
