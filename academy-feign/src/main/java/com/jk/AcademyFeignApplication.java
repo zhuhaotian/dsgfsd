@@ -5,13 +5,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication(exclude = MongoAutoConfiguration.class)
-@EnableFeignClients
 @EnableEurekaClient
+@EnableFeignClients //识别项目中feignClient 的注解
+@EnableScheduling
 public class AcademyFeignApplication {
 
     public static void main(String[] args) {
+        System.setProperty("es.set.netty.runtime.available.processors", "false");
         SpringApplication.run(AcademyFeignApplication.class, args);
     }
 

@@ -28,4 +28,10 @@ public class UserServiceImpl implements ShiroService {
 
         return userMapper.acaDemyQuery();
     }
+
+    @Override
+    @ResponseBody
+    public List<Course> findVideo() {
+        return userMapper.findVideo();
+    }
 }

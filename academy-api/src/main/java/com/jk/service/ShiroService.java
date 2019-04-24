@@ -21,4 +21,7 @@ public interface ShiroService {
      */
     @GetMapping("acaDemyQuery")
     List<Course> acaDemyQuery();
+
+    @RequestMapping("findVideo")
+    List<Course> findVideo();
 }

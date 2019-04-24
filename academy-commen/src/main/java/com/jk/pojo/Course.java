@@ -1,28 +1,39 @@
 package com.jk.pojo;
 
+import java.io.Serializable;
+
 /**
  * @program: mavenmodule
  * @Date: 2019/4/19 18:36
  * @Author: Mr.Deng
- * @Description:
+ * @Description:@Data
+ * @Document(indexName = "ordeo",type = "orvideo")
+ * public class VideoBean implements Serializable {
+ *
+ *     private static final long serialVersionUID = -6914584810275278086L;
+ *     @Id
+ *     private  String courseId;
+ *     @Field(analyzer = "ik_max_word")
  */
-public class Course {
 
-    private  Integer id;
+public class Course implements Serializable {
+
+    private static final long serialVersionUID = -2461946084639827723L;
+    private  String id;
 
     private  String noopsycheName;
 
-    private  Integer noopsycheHome;
+    private  String noopsycheHome;
 
-    private  Double noopsychePrice;
+    private  String noopsychePrice;
 
     private  String noopsycheImg;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -34,19 +45,19 @@ public class Course {
         this.noopsycheName = noopsycheName;
     }
 
-    public Integer getNoopsycheHome() {
+    public String getNoopsycheHome() {
         return noopsycheHome;
     }
 
-    public void setNoopsycheHome(Integer noopsycheHome) {
+    public void setNoopsycheHome(String noopsycheHome) {
         this.noopsycheHome = noopsycheHome;
     }
 
-    public Double getNoopsychePrice() {
+    public String getNoopsychePrice() {
         return noopsychePrice;
     }
 
-    public void setNoopsychePrice(Double noopsychePrice) {
+    public void setNoopsychePrice(String noopsychePrice) {
         this.noopsychePrice = noopsychePrice;
     }
 

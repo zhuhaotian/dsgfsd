@@ -13,6 +13,7 @@ import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,9 @@ import java.util.Map;
 
 @Controller
 public class ShiroController {
+
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
     @Autowired
     private ShiroServiceFeign shiroServiceFeign;
@@ -53,6 +57,11 @@ public class ShiroController {
         return "listHtml";
     }
 
+    /**
+     * ES搜索引擎
+     * @param course
+     * @return
+     */
     @RequestMapping("noopsycheEs")
     @ResponseBody
     public JSONObject queryProduct(Course course){
@@ -121,6 +130,33 @@ public class ShiroController {
         return result;
     }
 
+    /**
+     * 详情查询
+     * @param id
+     * @return
+     */
+    @RequestMapping("queryOrder")
+    @ResponseBody
+    public Course queryOrder(Integer id){
+        Client client = elasticsearchTemplate.getClient();
+        SearchRequestBuilder searchRequestBuilder = client.prepareSearch("noopsyche").setTypes("noopsycheType").setQuery(QueryBuilders.matchQuery("id",id));
+        SearchResponse searchResponse = searchRequestBuilder.get();
+        SearchHits hits = searchResponse.getHits();
+        Iterator<SearchHit> iterator = hits.iterator();
+        SearchHit next = iterator.next();
+        String sourceAsString = next.getSourceAsString();
+        Course housBean1 = JSON.parseObject(sourceAsString, Course.class);
+        String s = JSON.toJSONString(housBean1);
+        amqpTemplate.convertAndSend("order",s);
+        return housBean1;
+    }
 
+
+    @GetMapping("queryCollect")
+    @ResponseBody
+    public String queryCollect(Integer id){
+
+        return null;
+    }
 
 }

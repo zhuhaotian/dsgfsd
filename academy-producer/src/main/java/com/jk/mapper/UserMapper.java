@@ -3,6 +3,7 @@ package com.jk.mapper;
 import com.jk.pojo.Course;
 import com.jk.pojo.User;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -15,4 +16,7 @@ import java.util.List;
 public interface UserMapper {
 
     List<Course> acaDemyQuery();
+
+    @Select("select * from t_noopsyche")
+    List<Course> findVideo();
 }
