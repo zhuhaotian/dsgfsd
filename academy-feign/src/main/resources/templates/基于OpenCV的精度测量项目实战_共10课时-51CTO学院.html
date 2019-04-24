@@ -255,8 +255,15 @@
 
             function collectmongo(ids) {
                 var ids = getParam('id');
+                $.ajax({
+                    url:'http://192.168.101.173:1112/insertMogo',
+                    data:{
+                        id:ids
+                    },
+                    success:function(result) {
+                    }
+                })
 
-                alert(ids)
             }
 
         </script>
@@ -446,7 +453,7 @@
                 <div class="acts">
 
                     <div class="edu-ad fl" ad_id="262" info_id="16030" type="course" style="width:245px;max-height: 24px;overflow: hidden;line-height: 24px;"></div>
-                    <a href="javascript:collectmongo()">
+                    <a href="javascript:collectmongo('ids')">
                         收藏
                     </a>
                     <div class="bdsharebuttonbox fr bdshare-button-style0-16" data-bd-bind="1555981791954">

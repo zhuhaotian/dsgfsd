@@ -16,6 +16,8 @@ public class User {
 
     private String password;
 
+    private String vcode;
+
     public Integer getUid() {
         return uid;
     }
@@ -40,12 +42,21 @@ public class User {
         this.password = password;
     }
 
+    public String getVcode() {
+        return vcode;
+    }
+
+    public void setVcode(String vcode) {
+        this.vcode = vcode;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "uid=" + uid +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", vcode='" + vcode + '\'' +
                 '}';
     }
 }

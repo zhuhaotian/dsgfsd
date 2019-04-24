@@ -3,7 +3,12 @@ package com.jk.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.jk.pojo.Course;
+import com.jk.pojo.Mongo;
+import com.jk.pojo.MongoCou;
+import com.jk.pojo.User;
 import com.jk.service.ShiroServiceFeign;
+import com.jk.utils.ValidateCodeUtil;
+import com.mongodb.client.result.DeleteResult;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
@@ -14,22 +19,28 @@ import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
 import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class ShiroController {
+
+    @Autowired
+    public MongoTemplate mongoTemplate;
 
     @Autowired
     private AmqpTemplate amqpTemplate;
@@ -146,17 +157,31 @@ public class ShiroController {
         SearchHit next = iterator.next();
         String sourceAsString = next.getSourceAsString();
         Course housBean1 = JSON.parseObject(sourceAsString, Course.class);
-        String s = JSON.toJSONString(housBean1);
-        amqpTemplate.convertAndSend("order",housBean1);
         return housBean1;
     }
 
-
-    @GetMapping("queryCollect")
+    /**
+     * 登录
+     * @return
+     */
+    @GetMapping("userLogin")
     @ResponseBody
-    public String queryCollect(Integer id){
+    public List<User> userLogin(){
+        List<User> list = shiroServiceFeign.userLogin();
 
-        return null;
+        return list;
     }
+
+    /**
+     * 登录跳页面
+     * @return
+     */
+    @RequestMapping("listHtm")
+    public String listHtm(){
+
+        return "loginUser";
+    }
+
+
 
 }

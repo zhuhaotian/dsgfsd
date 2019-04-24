@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/common/jquery/jquery1.8.3.min.js"></script>
+</head>
+<body>
+<form id="login_form_id">
+    用户名：<input type="text" name="username" /><br>
+    密码：<input type="text" name="password" />
+    <span id="nameMes"></span>
+    <br>
+    <input type="button" value="登录" onclick="userLogin()" />
+</form>
+
+<script type="text/javascript">
+    function userLogin(){
+        $.ajax({
+            url: "/userLogin",
+            type: "post",
+            data: $("#login_form_id").serialize(),
+            dataType: "json",
+            success: function(result){
+
+            },
+            error: function(){
+                alert("请求失败")
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

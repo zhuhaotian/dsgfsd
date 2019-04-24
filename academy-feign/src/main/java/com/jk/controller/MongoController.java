@@ -1,6 +1,7 @@
 package com.jk.controller;
 
 import com.jk.pojo.Course;
+import com.jk.pojo.Mongo;
 import com.jk.util.ExportExcel;
 import com.jk.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,53 +30,53 @@ public class MongoController {
 
     @RequestMapping("mongoDbAdd")
     @ResponseBody
-    public void mongoDbAdd(Course course){
+    public void mongoDbAdd(Mongo mongo){
         /*course.setNoopsycheName("人工智能开发工程师（机器学习+深度学习）");
-        course.setNoopsycheHome("25");
-        course.setNoopsycheImg("10245");
-        course.setNoopsychePrice("http://houduan.oss-cn-beijing.aliyuncs.com/houduan/1553008184228.jpg");
+        mongo.setNoopsycheHome("25");
+        mongo.setNoopsycheImg("10245");
+        mongo.setNoopsychePrice("http://houduan.oss-cn-beijing.aliyuncs.com/houduan/1553008184228.jpg");
 
-        course.setNoopsycheName("人工智能开发进阶提升实训营");
-        course.setNoopsycheHome("14");
-        course.setNoopsycheImg("3235");
-        course.setNoopsychePrice("http://houduan.oss-cn-beijing.aliyuncs.com/houduan/1553008184228.jpg");
+        mongo.setNoopsycheName("人工智能开发进阶提升实训营");
+        mongo.setNoopsycheHome("14");
+        mongo.setNoopsycheImg("3235");
+        mongo.setNoopsychePrice("http://houduan.oss-cn-beijing.aliyuncs.com/houduan/1553008184228.jpg");
 
-        course.setNoopsycheName("推荐系统工程师");
-        course.setNoopsycheHome("23");
-        course.setNoopsycheImg("54236");
-        course.setNoopsychePrice("http://houduan.oss-cn-beijing.aliyuncs.com/houduan/1553008184228.jpg");
+        mongo.setNoopsycheName("推荐系统工程师");
+        mongo.setNoopsycheHome("23");
+        mongo.setNoopsycheImg("54236");
+        mongo.setNoopsychePrice("http://houduan.oss-cn-beijing.aliyuncs.com/houduan/1553008184228.jpg");
 
-        course.setNoopsycheName("推荐系统工程师");
-        course.setNoopsycheHome("32");
-        course.setNoopsycheImg("13345");
-        course.setNoopsychePrice("http://houduan.oss-cn-beijing.aliyuncs.com/houduan/1553008184228.jpg");*/
+        mongo.setNoopsycheName("推荐系统工程师");
+        mongo.setNoopsycheHome("32");
+        mongo.setNoopsycheImg("13345");
+        mongo.setNoopsychePrice("http://houduan.oss-cn-beijing.aliyuncs.com/houduan/1553008184228.jpg");*/
 
-        course.setNoopsycheName("人工智能开发进阶提升实训营");
-        course.setNoopsycheHome("5");
-        course.setNoopsycheImg("343245");
-        course.setNoopsychePrice("http://houduan.oss-cn-beijing.aliyuncs.com/houduan/1553008184228.jpg");
+        mongo.setNoopsycheName("人工智能开发进阶提升实训营");
+        mongo.setNoopsycheHome("5");
+        mongo.setNoopsycheImg("343245");
+        mongo.setNoopsychePrice("http://houduan.oss-cn-beijing.aliyuncs.com/houduan/1553008184228.jpg");
 
-        mongoTemplate.save(course);
+        mongoTemplate.save(mongo);
 
     }
 
     @RequestMapping("mongoDbQuery")
     @ResponseBody
-    public List<Course> mongoDbQuery(){
+    public List<Mongo> mongoDbQuery(){
         Query query = new Query();
-        List<Course> list = mongoTemplate.find(query, Course.class);
+        List<Mongo> list = mongoTemplate.find(query, Mongo.class);
         return list;
     }
 
     //poi导出   成excel
     @ResponseBody
     @RequestMapping("save")
-    public ResponseEntity<byte[]> save(Course course) throws Exception {
+    public ResponseEntity<byte[]> save(Mongo mongo) throws Exception {
         Query query = new Query();
         String sheetName = "我的列表";
         String titleName = "列表";
         String[] headers = {"", "ID", "视频教程名称", "课时", "图片","价格"};
-        List<Course> dataSet = mongoTemplate.find(query, Course.class);
+        List<Mongo> dataSet = mongoTemplate.find(query, Mongo.class);
         String replace = UUID.randomUUID().toString().replace("-", "");
 
         String fileDir = "E:\\poi\\";

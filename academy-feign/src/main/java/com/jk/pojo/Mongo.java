@@ -2,25 +2,15 @@ package com.jk.pojo;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.io.Serializable;
-
 /**
  * @program: mavenmodule
- * @Date: 2019/4/19 18:36
+ * @Date: 2019/4/24 20:28
  * @Author: Mr.Deng
- * @Description:@Data
- * @Document(indexName = "ordeo",type = "orvideo")
- * public class VideoBean implements Serializable {
- *
- *     private static final long serialVersionUID = -6914584810275278086L;
- *     @Id
- *     private  String courseId;
- *     @Field(analyzer = "ik_max_word")
+ * @Description:
  */
 @Document(collection="mon_course")
-public class Course implements Serializable{
+public class Mongo {
 
-    private static final long serialVersionUID = -8583087805162883811L;
     private  String id;
 
     private  String noopsycheName;
@@ -73,7 +63,7 @@ public class Course implements Serializable{
 
     @Override
     public String toString() {
-        return "Course{" +
+        return "Mongo{" +
                 "id='" + id + '\'' +
                 ", noopsycheName='" + noopsycheName + '\'' +
                 ", noopsycheHome='" + noopsycheHome + '\'' +

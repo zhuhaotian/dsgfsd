@@ -19,4 +19,8 @@ public interface UserMapper {
 
     @Select("select * from t_noopsyche")
     List<Course> findVideo();
+
+
+    List<User> userLogin();
+
 }

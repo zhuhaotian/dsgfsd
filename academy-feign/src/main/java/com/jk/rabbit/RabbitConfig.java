@@ -15,4 +15,12 @@ public class RabbitConfig {
     public Queue creatQueue(){
         return new Queue("order");
     }
+    @Bean
+    public Queue messageQueue3(){
+        return new Queue("insertMongCcollect");
+    }
+    @Bean
+    public Queue messageQueue4(){
+        return new Queue("insertMongCcol");
+    }
 }

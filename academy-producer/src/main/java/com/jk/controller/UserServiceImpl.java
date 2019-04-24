@@ -9,9 +9,11 @@ import com.jk.service.ShiroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -30,8 +32,17 @@ public class UserServiceImpl implements ShiroService {
     }
 
     @Override
+    public List<User> userLogin() {
+
+
+        return userMapper.userLogin();
+    }
+
+    @Override
     @ResponseBody
     public List<Course> findVideo() {
         return userMapper.findVideo();
     }
+
+
 }
