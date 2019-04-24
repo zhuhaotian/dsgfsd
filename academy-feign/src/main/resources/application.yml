@@ -24,3 +24,5 @@ Spring:
         max-idle: 300
         max-active: 600
     thymeleaf: content-type=text/html
+  mongodb:
+    uri: mongodb://name:password@//localhost:27017/test

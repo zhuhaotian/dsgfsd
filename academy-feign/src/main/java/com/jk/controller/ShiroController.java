@@ -147,7 +147,7 @@ public class ShiroController {
         String sourceAsString = next.getSourceAsString();
         Course housBean1 = JSON.parseObject(sourceAsString, Course.class);
         String s = JSON.toJSONString(housBean1);
-        amqpTemplate.convertAndSend("order",s);
+        amqpTemplate.convertAndSend("order",housBean1);
         return housBean1;
     }
 

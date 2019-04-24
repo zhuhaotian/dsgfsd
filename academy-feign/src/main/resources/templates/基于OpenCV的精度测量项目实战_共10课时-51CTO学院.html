@@ -243,12 +243,20 @@
                         $("#noopsychePrice").html(result.noopsychePrice);
                         $("#noopsycheName").html(result.noopsycheName);
                         $("#noopsycheHome").html(result.noopsycheHome);
+
                         $("#noopsycheImg").alert('src','result.noopsycheImg')
                     }
 
 
                 })
 
+            }
+
+
+            function collectmongo(ids) {
+                var ids = getParam('id');
+
+                alert(ids)
             }
 
         </script>
@@ -438,10 +446,8 @@
                 <div class="acts">
 
                     <div class="edu-ad fl" ad_id="262" info_id="16030" type="course" style="width:245px;max-height: 24px;overflow: hidden;line-height: 24px;"></div>
-                    &lt;!&ndash;          <a href="" target="_blank" class="fl"></a>&ndash;&gt;
-                    <a href="javascript:collect(id)" class="fav fr " id="fav">
-                        <i class="icon"></i>
-                        <span id="favFont">收藏</span>
+                    <a href="javascript:collectmongo()">
+                        收藏
                     </a>
                     <div class="bdsharebuttonbox fr bdshare-button-style0-16" data-bd-bind="1555981791954">
                         <a class="bds_more share" data-cmd="more" name="" style="line-height: 20px;margin: 0;padding-left: 24px;background: none;display: block;height: 20px;position: relative;font-size: 14px;">
@@ -471,10 +477,8 @@
 
 
                     <!--<p id="noopsychePrice" class="f75 fl f26 red">-->
-                    价　　格<span id="noopsychePrice" class="f75 fl f26 red"></span>¥
+                    价　　格：¥<span id="noopsychePrice" class="f75 fl f26 red"></span>
 
-
-                    ¥99
                     <div class="clear"></div>
 
 

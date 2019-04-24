@@ -1,5 +1,7 @@
 package com.jk.pojo;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.io.Serializable;
 
 /**
@@ -15,9 +17,10 @@ import java.io.Serializable;
  *     private  String courseId;
  *     @Field(analyzer = "ik_max_word")
  */
-public class Course implements Serializable {
+@Document(collection="mon_course")
+public class Course implements Serializable{
 
-    private static final long serialVersionUID = -2461946084639827723L;
+    private static final long serialVersionUID = -8583087805162883811L;
     private  String id;
 
     private  String noopsycheName;
@@ -71,10 +74,10 @@ public class Course implements Serializable {
     @Override
     public String toString() {
         return "Course{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", noopsycheName='" + noopsycheName + '\'' +
-                ", noopsycheHome=" + noopsycheHome +
-                ", noopsychePrice=" + noopsychePrice +
+                ", noopsycheHome='" + noopsycheHome + '\'' +
+                ", noopsychePrice='" + noopsychePrice + '\'' +
                 ", noopsycheImg='" + noopsycheImg + '\'' +
                 '}';
     }

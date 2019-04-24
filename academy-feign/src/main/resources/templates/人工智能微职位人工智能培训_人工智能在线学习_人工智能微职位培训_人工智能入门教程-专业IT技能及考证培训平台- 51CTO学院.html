@@ -246,16 +246,10 @@
         <a href="https://edu.51cto.com/center/wejob/index/list?pid=195&amp;cid=0&amp;sort=def&amp;asc=0" class="cur">
             综合排序            <div class="v_line"></div>
         </a>
-        <a href="https://edu.51cto.com/center/wejob/index/list?pid=195&amp;cid=0&amp;sort=ctime&amp;asc=0">
-            最新            <i class="icon arrow_d1"></i>
-        </a>
-        <a href="https://edu.51cto.com/center/wejob/index/list?pid=195&amp;cid=0&amp;sort=buy&amp;asc=0">
-            最热            <i class="icon arrow_d1"></i>
-        </a>
-        <a href="https://edu.51cto.com/center/wejob/index/list?pid=195&amp;cid=0&amp;sort=price&amp;asc=1">
-            价格                  </a>
-        <a href="https://edu.51cto.com/center/wejob/index/list?pid=195&amp;cid=0&amp;sign=1" class="pl20"><i class="icon check "></i>可报名</a>
-        <div class="top_chpage">
+        <button id="initMyTable" onclick="initMyTable()">升序</button>
+        <button id="init" onclick="initMy()">降序</button><br>
+        <button id="downloadId" onclick="myDownload()">下载</button><br>
+        <div  class="top_chpage" id="video">
         </div>
     </div>
 </div>
@@ -267,7 +261,16 @@
 
 
 
+
         <script>
+
+            $("#init").click(function(){
+                initMy()
+            })
+
+            $("#initMyTable").click(function(){
+                initMyTable()
+            })
             $(function(){
                 elasticSearch()
             })
@@ -324,6 +327,87 @@
             /*function toServiceDetails(){
                 location.href="/toServiceDetails";
             }*/
+            <!-- 升序 ================================================================-->
+            function initMyTable() {
+                $.ajax({
+                    url:'http://192.168.101.173:1112/curriculum/getKey',
+                    type:'GET',
+                    data:{
+                    },
+                    success:function(result){
+
+
+                        var data = result.rows
+                        var html='';
+                        for(var i =0;i< data.length;i++){
+                            html+='<div class="cList_Item">' +
+                                '            <div class="pic" style="border-radius: 3px;">' +
+                                '                        <a href="javascript:junmpspxq(\''+data[i].id+'\')" target="_blank">' +
+                                '                              <img src="'+data[i].noopsycheImg+'">' +
+                                '                                      </a>' +
+                                '                      </div>' +
+                                '                  <div class="main">' +
+                                '                        <h3><a href="https://edu.51cto.com/mic-position/254.html" title="'+data[i].noopsycheName+'" target="_blank">'+data[i].noopsycheName+'</a></h3>' +
+                                '                        <p class="fl">' +
+                                '                                          随到随学 '+data[i].noopsycheHome+' 周' +
+                                '                                     </p>' +
+                                '                        <div class="clear"></div>' +
+                                '                       <div class="price">' +
+                                '                              <h4>' +
+                                '                                    ¥ '+data[i].noopsychePrice+'          </h4>' +
+                                '                            </div>' +
+                                '                        </div>' +
+                                '                  </div>'
+                        }
+
+                        $("#userId").html(html)
+                    }
+                })
+            }
+
+            <!--降序 ================================================================-->
+            function initMy() {
+                $.ajax({
+                    url:'http://192.168.101.173:1112/curriculum/findKey',
+                    type:'GET',
+                    data:{
+                    },
+                    success:function(result){
+
+
+                        var data = result.rows
+                        var html='';
+                        for(var i =0;i< data.length;i++){
+                            html+='<div class="cList_Item">' +
+                                '            <div class="pic" style="border-radius: 3px;">' +
+                                '                        <a href="javascript:junmpspxq(\''+data[i].id+'\')" target="_blank">' +
+                                '                              <img src="'+data[i].noopsycheImg+'">' +
+                                '                                      </a>' +
+                                '                      </div>' +
+                                '                  <div class="main">' +
+                                '                        <h3><a href="https://edu.51cto.com/mic-position/254.html" title="'+data[i].noopsycheName+'" target="_blank">'+data[i].noopsycheName+'</a></h3>' +
+                                '                        <p class="fl">' +
+                                '                                          随到随学 '+data[i].noopsycheHome+' 周' +
+                                '                                     </p>' +
+                                '                        <div class="clear"></div>' +
+                                '                       <div class="price">' +
+                                '                              <h4>' +
+                                '                                    ¥ '+data[i].noopsychePrice+'          </h4>' +
+                                '                            </div>' +
+                                '                        </div>' +
+                                '                  </div>'
+                        }
+
+                        $("#userId").html(html)
+                    }
+                })
+            }
+
+            function myDownload() {
+                location.href="http://192.168.101.173:1112/save";
+
+            }
+
         </script>
 
 
